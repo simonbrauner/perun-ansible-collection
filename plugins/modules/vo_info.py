@@ -1,4 +1,12 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+DOCUMENTATION = r'''
+---
+module: vo_info
+
+short_description: Get data about virtual organization
+'''
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.urls import open_url
