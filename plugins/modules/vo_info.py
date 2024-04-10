@@ -8,20 +8,28 @@ module: vo_info
 short_description: Get data about virtual organization
 '''
 
-from ansible.module_utils.basic import AnsibleModule
-from ansible.module_utils.urls import open_url
+from perun_openapi.api_client import ApiClient
+from perun_openapi.configuration import Configuration
+from perun_openapi.api.vos_manager_api import VosManagerApi
 
-from urllib.parse import urljoin
+from ansible.module_utils.basic import AnsibleModule
+
 from json import loads
 
 
 def get_content(params):
-    url = urljoin(params['rpc_url'], '/ba/rpc/json/vosManager/getVoByShortName')
-    url = url + f'?shortName={params["short_name"]}'
-    response = open_url(url, url_username=params['user'], url_password=params['password'])
-    json_string = response.read().decode()
+    config = Configuration(
+        host=params["rpc_url"],
+        username=params["user"],
+        password=params["password"],
+    )
 
-    return loads(json_string)
+    with ApiClient(config) as api_client:
+        manager = VosManagerApi(api_client)
+        response = manager.get_vo_by_short_name(params["short_name"], _preload_content=False)
+        json_string = response.read().decode()
+
+        return loads(json_string)
 
 
 def main():
