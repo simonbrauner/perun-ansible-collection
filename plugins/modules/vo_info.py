@@ -18,10 +18,13 @@ from json import loads
 
 
 def get_content(params):
+    if params["auth"] is None:
+        raise NotImplementedError("OAuth 2 is not implemented yed")
+
     config = Configuration(
         host=params["rpc_url"],
-        username=params["user"],
-        password=params["password"],
+        username=params["auth"]["user"],
+        password=params["auth"]["password"],
     )
 
     with ApiClient(config) as api_client:
@@ -36,8 +39,11 @@ def main():
     module = AnsibleModule(
         argument_spec=dict(
             rpc_url=dict(type='str', required=True),
-            user=dict(type='str', required=True),
-            password=dict(type='str', required=True),
+            auth=dict(type='dict', required=False,
+                      options=dict(
+                          user=dict(type='str', required=True),
+                          password=dict(type='str', required=True, no_log=True),
+                      )),
             short_name=dict(type='str', required=True)
         ),
         supports_check_mode=False
