@@ -10,7 +10,7 @@ short_description: Get data about virtual organization
 
 EXAMPLES = r'''
 - name: Get data about given virtual organization
-  vo_info:
+  simonbrauner.perun.vo_info:
     rpc_url: "{{ rpc_url }}"
     auth:
       user: "{{ user }}"
