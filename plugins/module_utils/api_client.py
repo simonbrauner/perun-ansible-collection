@@ -3,12 +3,15 @@ from perun_openapi.configuration import Configuration
 
 
 API_CLIENT_ARGS = dict(
-    rpc_url=dict(type='str', required=True),
-    auth=dict(type='dict', required=False,
-              options=dict(
-                  user=dict(type='str', required=True),
-                  password=dict(type='str', required=True, no_log=True),
-              ))
+    rpc_url=dict(type="str", required=True),
+    auth=dict(
+        type="dict",
+        required=False,
+        options=dict(
+            user=dict(type="str", required=True),
+            password=dict(type="str", required=True, no_log=True),
+        ),
+    ),
 )
 
 

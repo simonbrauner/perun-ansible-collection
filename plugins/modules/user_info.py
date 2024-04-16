@@ -1,14 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-DOCUMENTATION = r'''
+DOCUMENTATION = r"""
 ---
 module: user_info
 
 short_description: Get data about user
-'''
+"""
 
-EXAMPLES = r'''
+EXAMPLES = r"""
 - name: Get data about user with given id
   simonbrauner.perun.user_info:
     rpc_url: "{{ rpc_url }}"
@@ -16,9 +16,12 @@ EXAMPLES = r'''
       user: "{{ user }}"
       password: "{{ password }}"
     user_id: "{{ user_id }}"
-'''
+"""
 
-from ansible_collections.simonbrauner.perun.plugins.module_utils.api_client import API_CLIENT_ARGS, configured_api_client
+from ansible_collections.simonbrauner.perun.plugins.module_utils.api_client import (
+    API_CLIENT_ARGS,
+    configured_api_client,
+)
 
 from perun_openapi.api.users_manager_api import UsersManagerApi
 
@@ -37,11 +40,8 @@ def get_content(params, api_client):
 
 def main():
     module = AnsibleModule(
-        argument_spec=dict(
-            **API_CLIENT_ARGS,
-            user_id=dict(type='int', required=True)
-        ),
-        supports_check_mode=False
+        argument_spec=dict(**API_CLIENT_ARGS, user_id=dict(type="int", required=True)),
+        supports_check_mode=False,
     )
 
     try:
@@ -49,8 +49,8 @@ def main():
             module.exit_json(**get_content(module.params, api_client))
 
     except Exception as exception:
-        module.fail_json(msg=f'{exception}')
+        module.fail_json(msg=f"{exception}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
