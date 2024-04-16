@@ -1,4 +1,4 @@
-# Ansible Collection - perun.perun
+# Perun Ansible Collection
 
 Collection for managing [Perun](https://perun-aai.org/) systems.
 
