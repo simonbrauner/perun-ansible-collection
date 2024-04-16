@@ -22,6 +22,7 @@ EXAMPLES = r'''
 
 from ansible_collections.simonbrauner.perun.plugins.module_utils.api_client import API_CLIENT_ARGS, configured_api_client
 
+from perun_openapi.exceptions import ApiException
 from perun_openapi.api.groups_manager_api import GroupsManagerApi
 
 from ansible.module_utils.basic import AnsibleModule
@@ -30,7 +31,14 @@ from json import loads
 
 
 def needs_change(params, api_client):
-    return True
+    manager = GroupsManagerApi(api_client)
+
+    try:
+        manager.get_group_by_name(params["vo_id"], params["name"], _preload_content=False)
+    except ApiException:
+        return True
+
+    return False
 
 
 def perform_changes(params, api_client):
@@ -50,7 +58,7 @@ def main():
             name=dict(type='str', required=True),
             description=dict(type='str', required=True)
         ),
-        supports_check_mode=True
+        supports_check_mode=False
     )
 
     try:
