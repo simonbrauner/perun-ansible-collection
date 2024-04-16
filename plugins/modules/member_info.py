@@ -19,8 +19,8 @@ EXAMPLES = r'''
     user_id: "{{ user_id }}"
 '''
 
-from perun_openapi.api_client import ApiClient
-from perun_openapi.configuration import Configuration
+from ansible_collections.simonbrauner.perun.plugins.module_utils.api_client import configured_api_client
+
 from perun_openapi.api.members_manager_api import MembersManagerApi
 
 from ansible.module_utils.basic import AnsibleModule
@@ -28,22 +28,12 @@ from ansible.module_utils.basic import AnsibleModule
 from json import loads
 
 
-def get_content(params):
-    if params["auth"] is None:
-        raise NotImplementedError("OAuth 2 is not implemented yed")
+def get_content(params, api_client):
+    manager = MembersManagerApi(api_client)
+    response = manager.get_member_by_user(params["vo_id"], params["user_id"], _preload_content=False)
+    json_string = response.read().decode()
 
-    config = Configuration(
-        host=params["rpc_url"],
-        username=params["auth"]["user"],
-        password=params["auth"]["password"],
-    )
-
-    with ApiClient(config) as api_client:
-        manager = MembersManagerApi(api_client)
-        response = manager.get_member_by_user(params["vo_id"], params["user_id"], _preload_content=False)
-        json_string = response.read().decode()
-
-        return loads(json_string)
+    return loads(json_string)
 
 
 def main():
@@ -62,7 +52,8 @@ def main():
     )
 
     try:
-        module.exit_json(**get_content(module.params))
+        with configured_api_client(module.params) as api_client:
+            module.exit_json(**get_content(module.params, api_client))
 
     except Exception as exception:
         module.fail_json(msg=f'{exception}')
