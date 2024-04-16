@@ -8,6 +8,16 @@ module: vo_info
 short_description: Get data about virtual organization
 '''
 
+EXAMPLES = r'''
+- name: Get data about given virtual organization
+  vo_info:
+    rpc_url: "{{ rpc_url }}"
+    auth:
+      user: "{{ user }}"
+      password: "{{ password }}"
+    short_name: "{{ vo_name }}"
+'''
+
 from perun_openapi.api_client import ApiClient
 from perun_openapi.configuration import Configuration
 from perun_openapi.api.vos_manager_api import VosManagerApi
