@@ -1,5 +1,5 @@
-from perun_openapi.api_client import ApiClient
-from perun_openapi.configuration import Configuration
+from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.api_client import ApiClient
+from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.configuration import Configuration
 
 
 API_CLIENT_ARGS = dict(

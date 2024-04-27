@@ -24,7 +24,7 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.api_client impo
     configured_api_client,
 )
 
-from perun_openapi.api.members_manager_api import MembersManagerApi
+from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.api.members_manager_api import MembersManagerApi
 
 from ansible.module_utils.basic import AnsibleModule
 
