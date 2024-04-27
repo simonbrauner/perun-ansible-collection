@@ -51,12 +51,12 @@ def needs_change(params, api_client):
 
 def perform_changes(params, api_client):
     manager = GroupsManagerApi(api_client)
-    memeber_function_args = ([params["group_id"]], params["member_id"])
+    member_function_args = ([params["group_id"]], params["member_id"])
 
     if params["member_of_group"]:
-        manager.add_member(**member_function_args)
+        manager.add_member(*member_function_args)
     else:
-        manager.remove_member(**member_function_args)
+        manager.remove_member(*member_function_args)
 
 
 def main():
