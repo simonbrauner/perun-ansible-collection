@@ -22,5 +22,6 @@ find "$PERUN_OPENAPI_DIR_NAME" -name "*.py" -exec sed -E -i \
 
 cp -r "$PERUN_OPENAPI_DIR_NAME" "$PERUN_OPENAPI_DIR"
 cp "$PERUN_OPENAPI_README_NAME" "$PERUN_OPENAPI_DIR/README.md"
+cp -r "perun/oidc" "$PERUN_OPENAPI_DIR"
 
 rm -rf "$TMP_DIR"
