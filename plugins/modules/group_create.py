@@ -21,7 +21,7 @@ EXAMPLES = r"""
 """
 
 from ansible_collections.simonbrauner.perun.plugins.module_utils.api_client import (
-    API_CLIENT_ARGS,
+    general_module_options,
     configured_api_client,
 )
 
@@ -57,15 +57,11 @@ def perform_changes(params, api_client):
 
 
 def main():
-    module = AnsibleModule(
-        argument_spec=dict(
-            **API_CLIENT_ARGS,
-            vo_id=dict(type="int", required=True),
-            name=dict(type="str", required=True),
-            description=dict(type="str", required=True),
-        ),
-        supports_check_mode=False,
-    )
+    options = general_module_options()
+    options["argument_spec"]["vo_id"] = dict(type="int", required=True)
+    options["argument_spec"]["name"] = dict(type="str", required=True)
+    options["argument_spec"]["description"] = dict(type="str", required=True)
+    module = AnsibleModule(**options)
 
     try:
         with configured_api_client(module.params) as api_client:

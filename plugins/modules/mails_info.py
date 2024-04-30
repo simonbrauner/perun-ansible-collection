@@ -27,7 +27,7 @@ EXAMPLES = r"""
 """
 
 from ansible_collections.simonbrauner.perun.plugins.module_utils.api_client import (
-    API_CLIENT_ARGS,
+    general_module_options,
     configured_api_client,
 )
 
@@ -52,16 +52,12 @@ def get_content(params, api_client):
 
 
 def main():
-    module = AnsibleModule(
-        argument_spec=dict(
-            **API_CLIENT_ARGS,
-            vo_id=dict(type="str", required=False),
-            group_id=dict(type="str", required=False),
-        ),
-        required_one_of=[['vo_id', 'group_id']],
-        mutually_exclusive=[['vo_id', 'group_id']],
-        supports_check_mode=False,
-    )
+    options = general_module_options()
+    options["argument_spec"]["vo_id"] = dict(type="str", required=False)
+    options["argument_spec"]["group_id"] = dict(type="str", required=False)
+    options["required_one_of"].append(["vo_id", 'group_id'])
+    options["mutually_exclusive"].append(["vo_id", 'group_id'])
+    module = AnsibleModule(**options)
 
     try:
         with configured_api_client(module.params) as api_client:
