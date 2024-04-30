@@ -1,5 +1,6 @@
 from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.api_client import ApiClient
 from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.configuration import Configuration
+from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.oidc import DeviceCodeOAuth
 
 
 def general_module_options():
@@ -29,12 +30,22 @@ def general_module_options():
 
 def configured_api_client(params):
     if params["oauth"] is not None:
-        raise NotImplementedError("OAuth 2 is not implemented")
-
-    config = Configuration(
-        host=params["ba"]["rpc_url"],
-        username=params["ba"]["user"],
-        password=params["ba"]["password"],
-    )
+        dca = DeviceCodeOAuth(
+            params["oauth"]["perun_instance"],
+            "s3cr3t",
+            False,
+            8 * 60,
+            False
+        )
+        config = Configuration(
+            access_token=dca.get_access_token(),
+            host=dca.get_perun_api_url(),
+        )
+    else:
+        config = Configuration(
+            host=params["ba"]["rpc_url"],
+            username=params["ba"]["user"],
+            password=params["ba"]["password"],
+        )
 
     return ApiClient(config)
