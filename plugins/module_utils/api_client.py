@@ -1,6 +1,6 @@
 from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.api_client import ApiClient
 from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.configuration import Configuration
-from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.oidc import DeviceCodeOAuth
+from ansible_collections.simonbrauner.perun.plugins.module_utils.oidc import DeviceCodeOAuth
 
 
 def general_module_options():
