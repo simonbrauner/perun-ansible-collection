@@ -41,7 +41,11 @@ class DeviceCodeOAuth:
 
     def __init__(
         self,
-        perun_instance: PerunInstance,
+        # perun_instance: PerunInstance,
+        metadata_url: str,
+        client_id: str,
+        scopes: str,
+        perun_api_url: str,
         encryption_password: str,
         mfa: bool,
         mfa_valid_minutes,
@@ -58,69 +62,73 @@ class DeviceCodeOAuth:
         self.mfa = mfa
         self.mfa_valid_seconds = mfa_valid_minutes * 60
         self.debug = debug
-        self.config_data_all = {
-            PerunInstance.einfra: {
-                "metadata_url": "https://login.e-infra.cz/oidc/.well-known/openid-configuration",
-                "client_id": "363b656e-d139-4290-99cd-ee64eeb830d5",
-                "scopes": "openid perun_api perun_admin offline_access",
-                "perun_api_url": "https://perun-api.e-infra.cz/oauth/rpc",
-                "mfa": True,
-            },
-            PerunInstance.einfra_acc: {
-                "metadata_url": "https://login.e-infra.cz/oidc/.well-known/openid-configuration",
-                "client_id": "363b656e-d139-4290-99cd-ee64eeb830d5",
-                "scopes": "openid perun_api perun_admin offline_access",
-                "perun_api_url": "https://perun-api.acc.aai.e-infra.cz/oauth/rpc/",
-                "mfa": True,
-            },
-            PerunInstance.cesnet: {
-                "metadata_url": "https://login.cesnet.cz/oidc/.well-known/openid-configuration",
-                "client_id": "363b656e-d139-4290-99cd-ee64eeb830d5",
-                "scopes": "openid perun_api perun_admin offline_access",
-                "perun_api_url": "https://perun.cesnet.cz/oauth/rpc",
-                "mfa": False,
-            },
-            PerunInstance.perun_dev: {
-                "metadata_url": "https://login.cesnet.cz/oidc/.well-known/openid-configuration",
-                "client_id": "363b656e-d139-4290-99cd-ee64eeb830d5",
-                "scopes": "openid perun_api perun_admin offline_access",
-                "perun_api_url": "https://perun-dev.cesnet.cz/oauth/rpc",
-                "mfa": False,
-            },
-            PerunInstance.idm_test: {
-                "metadata_url": "https://oidc.muni.cz/oidc/.well-known/openid-configuration",
-                "client_id": "5a730abc-6553-4fc4-af9a-21c75c46e0c2",
-                "scopes": "openid perun_api perun_admin offline_access profile",
-                "perun_api_url": "https://idm-test.ics.muni.cz/oauth/rpc",
-                "mfa": True,
-            },
-            PerunInstance.idm: {
-                "metadata_url": "https://oidc.muni.cz/oidc/.well-known/openid-configuration",
-                "client_id": "5a730abc-6553-4fc4-af9a-21c75c46e0c2",
-                "scopes": "openid perun_api perun_admin offline_access profile",
-                "perun_api_url": "https://idm.ics.muni.cz/oauth/rpc",
-                "mfa": True,
-            },
-            PerunInstance.elixir: {
-                "metadata_url": "https://login.elixir-czech.org/oidc/.well-known/openid-configuration",
-                "client_id": "da97db9f-b511-4c72-b71f-daab24b86884",
-                "scopes": "openid perun_api perun_admin offline_access profile",
-                "perun_api_url": "https://elixir-api.aai.lifescience-ri.eu/oauth/rpc",
-                "mfa": True,
-            },
-            # PerunInstance.idm_satosa: {
-            #     'metadata_url': 'https://proxy.aai.muni.cz/OIDC/.well-known/openid-configuration',
-            #     'client_id': '5a730abc-6553-4fc4-af9a-21c75c46e0c2',
-            #     'scopes': 'openid perun_api perun_admin offline_access profile',
-            #     'perun_api_url': 'https://perun-api.aai.muni.cz/oauth/rpc',
-            #     'mfa': False,
-            # }
-        }
-        self.config_data = self.config_data_all.get(perun_instance)
-        self.CLIENT_ID = self.__get_oidc_option("client_id")
-        self.SCOPES = self.__get_oidc_option("scopes")
-        self.PERUN_API_URL = self.__get_oidc_option("perun_api_url")
-        metadata = requests.get(self.__get_oidc_option("metadata_url")).json()
+        # self.config_data_all = {
+        #     PerunInstance.einfra: {
+        #         "metadata_url": "https://login.e-infra.cz/oidc/.well-known/openid-configuration",
+        #         "client_id": "363b656e-d139-4290-99cd-ee64eeb830d5",
+        #         "scopes": "openid perun_api perun_admin offline_access",
+        #         "perun_api_url": "https://perun-api.e-infra.cz/oauth/rpc",
+        #         "mfa": True,
+        #     },
+        #     PerunInstance.einfra_acc: {
+        #         "metadata_url": "https://login.e-infra.cz/oidc/.well-known/openid-configuration",
+        #         "client_id": "363b656e-d139-4290-99cd-ee64eeb830d5",
+        #         "scopes": "openid perun_api perun_admin offline_access",
+        #         "perun_api_url": "https://perun-api.acc.aai.e-infra.cz/oauth/rpc/",
+        #         "mfa": True,
+        #     },
+        #     PerunInstance.cesnet: {
+        #         "metadata_url": "https://login.cesnet.cz/oidc/.well-known/openid-configuration",
+        #         "client_id": "363b656e-d139-4290-99cd-ee64eeb830d5",
+        #         "scopes": "openid perun_api perun_admin offline_access",
+        #         "perun_api_url": "https://perun.cesnet.cz/oauth/rpc",
+        #         "mfa": False,
+        #     },
+        #     PerunInstance.perun_dev: {
+        #         "metadata_url": "https://login.cesnet.cz/oidc/.well-known/openid-configuration",
+        #         "client_id": "363b656e-d139-4290-99cd-ee64eeb830d5",
+        #         "scopes": "openid perun_api perun_admin offline_access",
+        #         "perun_api_url": "https://perun-dev.cesnet.cz/oauth/rpc",
+        #         "mfa": False,
+        #     },
+        #     PerunInstance.idm_test: {
+        #         "metadata_url": "https://oidc.muni.cz/oidc/.well-known/openid-configuration",
+        #         "client_id": "5a730abc-6553-4fc4-af9a-21c75c46e0c2",
+        #         "scopes": "openid perun_api perun_admin offline_access profile",
+        #         "perun_api_url": "https://idm-test.ics.muni.cz/oauth/rpc",
+        #         "mfa": True,
+        #     },
+        #     PerunInstance.idm: {
+        #         "metadata_url": "https://oidc.muni.cz/oidc/.well-known/openid-configuration",
+        #         "client_id": "5a730abc-6553-4fc4-af9a-21c75c46e0c2",
+        #         "scopes": "openid perun_api perun_admin offline_access profile",
+        #         "perun_api_url": "https://idm.ics.muni.cz/oauth/rpc",
+        #         "mfa": True,
+        #     },
+        #     PerunInstance.elixir: {
+        #         "metadata_url": "https://login.elixir-czech.org/oidc/.well-known/openid-configuration",
+        #         "client_id": "da97db9f-b511-4c72-b71f-daab24b86884",
+        #         "scopes": "openid perun_api perun_admin offline_access profile",
+        #         "perun_api_url": "https://elixir-api.aai.lifescience-ri.eu/oauth/rpc",
+        #         "mfa": True,
+        #     },
+        #     # PerunInstance.idm_satosa: {
+        #     #     'metadata_url': 'https://proxy.aai.muni.cz/OIDC/.well-known/openid-configuration',
+        #     #     'client_id': '5a730abc-6553-4fc4-af9a-21c75c46e0c2',
+        #     #     'scopes': 'openid perun_api perun_admin offline_access profile',
+        #     #     'perun_api_url': 'https://perun-api.aai.muni.cz/oauth/rpc',
+        #     #     'mfa': False,
+        #     # }
+        # }
+        # self.config_data = self.config_data_all.get(perun_instance)
+        # self.CLIENT_ID = self.__get_oidc_option("client_id")
+        # self.SCOPES = self.__get_oidc_option("scopes")
+        # self.PERUN_API_URL = self.__get_oidc_option("perun_api_url")
+        # metadata = requests.get(self.__get_oidc_option("metadata_url")).json()
+        self.CLIENT_ID = client_id
+        self.SCOPES = scopes
+        self.PERUN_API_URL = perun_api_url
+        metadata = requests.get(metadata_url).json()
         self.ISSUER = metadata["issuer"]
         self.DEVICE_AUTHORIZATION_ENDPOINT_URL = metadata[
             "device_authorization_endpoint"

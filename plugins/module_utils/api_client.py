@@ -10,7 +10,13 @@ def general_module_options():
                 type="dict",
                 required=False,
                 options=dict(
-                    perun_instance=dict(type="str", required=True)
+                    metadata_url=dict(type="str", required=True),
+                    client_id=dict(type="str", required=True),
+                    scopes=dict(type="str", required=True),
+                    rpc_url=dict(type="str", required=True),
+                    encryption_password=dict(type="str", required=True, no_log=True),
+                    mfa=dict(type="bool", required=True),
+                    mfa_valid_minutes=dict(type="int", required=True),
                 )
             ),
             ba=dict(
@@ -31,10 +37,13 @@ def general_module_options():
 def configured_api_client(params):
     if params["oauth"] is not None:
         dca = DeviceCodeOAuth(
-            params["oauth"]["perun_instance"],
-            "s3cr3t",
-            False,
-            8 * 60,
+            params["oauth"]["metadata_url"],
+            params["oauth"]["client_id"],
+            params["oauth"]["scopes"],
+            params["oauth"]["rpc_url"],
+            params["oauth"]["encryption_password"],
+            params["oauth"]["mfa"],
+            params["oauth"]["mfa_valid_minutes"],
             False
         )
         config = Configuration(
