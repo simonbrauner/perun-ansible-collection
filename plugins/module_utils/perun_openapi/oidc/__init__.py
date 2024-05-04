@@ -1,3 +1,4 @@
+# Copyright (c) 2010-2024, CESNET, CERIT-SC, Masaryk University. All rights reserved.
 from enum import Enum
 from pathlib import Path
 from datetime import datetime

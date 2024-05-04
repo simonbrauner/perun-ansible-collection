@@ -22,6 +22,9 @@ find "$PERUN_OPENAPI_DIR_NAME" -name "*.py" -exec sed -E -i \
 
 cp -r "$PERUN_OPENAPI_DIR_NAME" "$PERUN_OPENAPI_DIR"
 cp "$PERUN_OPENAPI_README_NAME" "$PERUN_OPENAPI_DIR/README.md"
+
+COPYRIGHT="Copyright (c) 2010-2024, CESNET, CERIT-SC, Masaryk University. All rights reserved."
+sed -i "1i # $COPYRIGHT" "perun/oidc/__init__.py"
 cp -r "perun/oidc" "$PERUN_OPENAPI_DIR"
 
 rm -rf "$TMP_DIR"
