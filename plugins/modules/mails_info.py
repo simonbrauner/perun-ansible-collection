@@ -30,25 +30,13 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.api_client impo
     general_module_options,
     configured_api_client,
 )
-
-from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.api.registrar_manager_api import RegistrarManagerApi
+from ansible_collections.simonbrauner.perun.plugins.module_utils.get_mails import get_mails
 
 from ansible.module_utils.basic import AnsibleModule
 
-from json import loads
-
 
 def get_content(params, api_client):
-    manager = RegistrarManagerApi(api_client)
-
-    if params["vo_id"] is not None:
-        response = manager.get_application_mails_for_vo(int(params["vo_id"]), _preload_content=False)
-    else:
-        response = manager.get_application_mails_for_group(int(params["group_id"]), _preload_content=False)
-
-    json_string = response.read().decode()
-
-    return {"mails":loads(json_string)}
+    return {"mails":get_mails(params, api_client)}
 
 
 def main():
