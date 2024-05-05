@@ -31,10 +31,10 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.enriched_resource import EnrichedResource
-    from perun_openapi.model.facility import Facility
-    from perun_openapi.model.group_resource_status import GroupResourceStatus
-    from perun_openapi.model.resource_tag import ResourceTag
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.enriched_resource import EnrichedResource
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.facility import Facility
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.group_resource_status import GroupResourceStatus
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.resource_tag import ResourceTag
     globals()['EnrichedResource'] = EnrichedResource
     globals()['Facility'] = Facility
     globals()['GroupResourceStatus'] = GroupResourceStatus

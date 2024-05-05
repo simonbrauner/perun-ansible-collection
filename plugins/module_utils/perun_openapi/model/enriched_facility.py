@@ -31,10 +31,10 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.destination import Destination
-    from perun_openapi.model.facility import Facility
-    from perun_openapi.model.host import Host
-    from perun_openapi.model.owner import Owner
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.destination import Destination
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.facility import Facility
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.host import Host
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.owner import Owner
     globals()['Destination'] = Destination
     globals()['Facility'] = Facility
     globals()['Host'] = Host

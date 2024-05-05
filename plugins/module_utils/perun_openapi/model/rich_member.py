@@ -31,10 +31,10 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.attribute import Attribute
-    from perun_openapi.model.member import Member
-    from perun_openapi.model.user import User
-    from perun_openapi.model.user_ext_source import UserExtSource
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.attribute import Attribute
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.member import Member
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.user import User
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.user_ext_source import UserExtSource
     globals()['Attribute'] = Attribute
     globals()['Member'] = Member
     globals()['User'] = User

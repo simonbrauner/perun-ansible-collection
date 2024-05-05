@@ -31,9 +31,9 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.app_type import AppType
-    from perun_openapi.model.item_texts import ItemTexts
-    from perun_openapi.model.type import Type
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.app_type import AppType
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.item_texts import ItemTexts
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.type import Type
     globals()['AppType'] = AppType
     globals()['ItemTexts'] = ItemTexts
     globals()['Type'] = Type

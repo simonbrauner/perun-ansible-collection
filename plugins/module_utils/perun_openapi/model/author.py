@@ -31,9 +31,9 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.attribute import Attribute
-    from perun_openapi.model.authorship import Authorship
-    from perun_openapi.model.perun_bean import PerunBean
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.attribute import Attribute
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.authorship import Authorship
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.perun_bean import PerunBean
     globals()['Attribute'] = Attribute
     globals()['Authorship'] = Authorship
     globals()['PerunBean'] = PerunBean

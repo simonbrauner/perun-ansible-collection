@@ -31,8 +31,8 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.blocked_logins_order_column import BlockedLoginsOrderColumn
-    from perun_openapi.model.sorting_order import SortingOrder
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.blocked_logins_order_column import BlockedLoginsOrderColumn
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.sorting_order import SortingOrder
     globals()['BlockedLoginsOrderColumn'] = BlockedLoginsOrderColumn
     globals()['SortingOrder'] = SortingOrder
 

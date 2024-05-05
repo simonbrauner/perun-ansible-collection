@@ -31,8 +31,8 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.enriched_group import EnrichedGroup
-    from perun_openapi.model.group_resource_status import GroupResourceStatus
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.enriched_group import EnrichedGroup
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.group_resource_status import GroupResourceStatus
     globals()['EnrichedGroup'] = EnrichedGroup
     globals()['GroupResourceStatus'] = GroupResourceStatus
 

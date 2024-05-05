@@ -31,38 +31,38 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.attribute import Attribute
-    from perun_openapi.model.attribute_definition import AttributeDefinition
-    from perun_openapi.model.ban import Ban
-    from perun_openapi.model.ban_on_facility import BanOnFacility
-    from perun_openapi.model.ban_on_resource import BanOnResource
-    from perun_openapi.model.ban_on_vo import BanOnVo
-    from perun_openapi.model.candidate import Candidate
-    from perun_openapi.model.consent import Consent
-    from perun_openapi.model.consent_hub import ConsentHub
-    from perun_openapi.model.destination import Destination
-    from perun_openapi.model.ext_source import ExtSource
-    from perun_openapi.model.facility import Facility
-    from perun_openapi.model.group import Group
-    from perun_openapi.model.host import Host
-    from perun_openapi.model.member import Member
-    from perun_openapi.model.owner import Owner
-    from perun_openapi.model.perun_bean import PerunBean
-    from perun_openapi.model.resource import Resource
-    from perun_openapi.model.resource_tag import ResourceTag
-    from perun_openapi.model.rich_destination import RichDestination
-    from perun_openapi.model.rich_facility import RichFacility
-    from perun_openapi.model.rich_group import RichGroup
-    from perun_openapi.model.rich_member import RichMember
-    from perun_openapi.model.rich_resource import RichResource
-    from perun_openapi.model.rich_user import RichUser
-    from perun_openapi.model.security_team import SecurityTeam
-    from perun_openapi.model.service import Service
-    from perun_openapi.model.service_for_gui import ServiceForGUI
-    from perun_openapi.model.services_package import ServicesPackage
-    from perun_openapi.model.user import User
-    from perun_openapi.model.user_ext_source import UserExtSource
-    from perun_openapi.model.vo import Vo
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.attribute import Attribute
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.attribute_definition import AttributeDefinition
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.ban import Ban
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.ban_on_facility import BanOnFacility
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.ban_on_resource import BanOnResource
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.ban_on_vo import BanOnVo
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.candidate import Candidate
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.consent import Consent
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.consent_hub import ConsentHub
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.destination import Destination
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.ext_source import ExtSource
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.facility import Facility
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.group import Group
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.host import Host
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.member import Member
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.owner import Owner
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.perun_bean import PerunBean
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.resource import Resource
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.resource_tag import ResourceTag
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.rich_destination import RichDestination
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.rich_facility import RichFacility
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.rich_group import RichGroup
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.rich_member import RichMember
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.rich_resource import RichResource
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.rich_user import RichUser
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.security_team import SecurityTeam
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.service import Service
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.service_for_gui import ServiceForGUI
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.services_package import ServicesPackage
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.user import User
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.user_ext_source import UserExtSource
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.vo import Vo
     globals()['Attribute'] = Attribute
     globals()['AttributeDefinition'] = AttributeDefinition
     globals()['Ban'] = Ban

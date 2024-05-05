@@ -31,9 +31,9 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.author import Author
-    from perun_openapi.model.perun_bean import PerunBean
-    from perun_openapi.model.publication_for_gui import PublicationForGUI
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.author import Author
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.perun_bean import PerunBean
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.publication_for_gui import PublicationForGUI
     globals()['Author'] = Author
     globals()['PerunBean'] = PerunBean
     globals()['PublicationForGUI'] = PublicationForGUI

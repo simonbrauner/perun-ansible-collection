@@ -31,9 +31,9 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.ban_on_vo import BanOnVo
-    from perun_openapi.model.rich_member import RichMember
-    from perun_openapi.model.vo import Vo
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.ban_on_vo import BanOnVo
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.rich_member import RichMember
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.vo import Vo
     globals()['BanOnVo'] = BanOnVo
     globals()['RichMember'] = RichMember
     globals()['Vo'] = Vo

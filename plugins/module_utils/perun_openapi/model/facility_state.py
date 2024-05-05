@@ -31,8 +31,8 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.facility import Facility
-    from perun_openapi.model.facility_propagation_state import FacilityPropagationState
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.facility import Facility
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.facility_propagation_state import FacilityPropagationState
     globals()['Facility'] = Facility
     globals()['FacilityPropagationState'] = FacilityPropagationState
 

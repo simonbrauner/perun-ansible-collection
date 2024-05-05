@@ -31,16 +31,16 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.attribute_definition import AttributeDefinition
-    from perun_openapi.model.ext_source import ExtSource
-    from perun_openapi.model.facility import Facility
-    from perun_openapi.model.group import Group
-    from perun_openapi.model.member import Member
-    from perun_openapi.model.resource import Resource
-    from perun_openapi.model.service import Service
-    from perun_openapi.model.user import User
-    from perun_openapi.model.user_ext_source import UserExtSource
-    from perun_openapi.model.vo import Vo
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.attribute_definition import AttributeDefinition
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.ext_source import ExtSource
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.facility import Facility
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.group import Group
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.member import Member
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.resource import Resource
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.service import Service
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.user import User
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.user_ext_source import UserExtSource
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.vo import Vo
     globals()['AttributeDefinition'] = AttributeDefinition
     globals()['ExtSource'] = ExtSource
     globals()['Facility'] = Facility

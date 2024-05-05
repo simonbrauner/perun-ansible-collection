@@ -31,8 +31,8 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.attribute_action import AttributeAction
-    from perun_openapi.model.attribute_policy import AttributePolicy
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.attribute_action import AttributeAction
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.attribute_policy import AttributePolicy
     globals()['AttributeAction'] = AttributeAction
     globals()['AttributePolicy'] = AttributePolicy
 

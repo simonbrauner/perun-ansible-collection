@@ -31,9 +31,9 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.consent_status import ConsentStatus
-    from perun_openapi.model.sorting_order import SortingOrder
-    from perun_openapi.model.users_order_column import UsersOrderColumn
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.consent_status import ConsentStatus
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.sorting_order import SortingOrder
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.users_order_column import UsersOrderColumn
     globals()['ConsentStatus'] = ConsentStatus
     globals()['SortingOrder'] = SortingOrder
     globals()['UsersOrderColumn'] = UsersOrderColumn

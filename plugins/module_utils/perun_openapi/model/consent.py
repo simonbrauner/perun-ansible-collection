@@ -31,10 +31,10 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.attribute_definition import AttributeDefinition
-    from perun_openapi.model.auditable import Auditable
-    from perun_openapi.model.consent_hub import ConsentHub
-    from perun_openapi.model.consent_status import ConsentStatus
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.attribute_definition import AttributeDefinition
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.auditable import Auditable
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.consent_hub import ConsentHub
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.consent_status import ConsentStatus
     globals()['AttributeDefinition'] = AttributeDefinition
     globals()['Auditable'] = Auditable
     globals()['ConsentHub'] = ConsentHub

@@ -31,9 +31,9 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.facility import Facility
-    from perun_openapi.model.service import Service
-    from perun_openapi.model.task import Task
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.facility import Facility
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.service import Service
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.task import Task
     globals()['Facility'] = Facility
     globals()['Service'] = Service
     globals()['Task'] = Task

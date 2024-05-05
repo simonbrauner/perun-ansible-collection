@@ -31,7 +31,7 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.attribute_definition import AttributeDefinition
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.attribute_definition import AttributeDefinition
     globals()['AttributeDefinition'] = AttributeDefinition
 
 

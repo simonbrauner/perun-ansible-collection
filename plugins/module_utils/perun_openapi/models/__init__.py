@@ -4,7 +4,7 @@
 # if you have many models here with many references from one model to another this may
 # raise a RecursionError
 # to avoid this, import only the models that you directly need like:
-# from perun_openapi.model.pet import Pet
+# from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.pet import Pet
 # or import this package, but before doing it, use:
 # import sys
 # sys.setrecursionlimit(n)

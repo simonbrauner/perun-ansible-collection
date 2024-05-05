@@ -31,10 +31,10 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.auditable import Auditable
-    from perun_openapi.model.destination_propagation_type import DestinationPropagationType
-    from perun_openapi.model.destination_type import DestinationType
-    from perun_openapi.model.rich_destination import RichDestination
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.auditable import Auditable
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.destination_propagation_type import DestinationPropagationType
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.destination_type import DestinationType
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.rich_destination import RichDestination
     globals()['Auditable'] = Auditable
     globals()['DestinationPropagationType'] = DestinationPropagationType
     globals()['DestinationType'] = DestinationType

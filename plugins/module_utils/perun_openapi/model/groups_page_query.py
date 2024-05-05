@@ -31,10 +31,10 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.group_admin_roles import GroupAdminRoles
-    from perun_openapi.model.groups_order_column import GroupsOrderColumn
-    from perun_openapi.model.role_assignment_type import RoleAssignmentType
-    from perun_openapi.model.sorting_order import SortingOrder
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.group_admin_roles import GroupAdminRoles
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.groups_order_column import GroupsOrderColumn
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.role_assignment_type import RoleAssignmentType
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.sorting_order import SortingOrder
     globals()['GroupAdminRoles'] = GroupAdminRoles
     globals()['GroupsOrderColumn'] = GroupsOrderColumn
     globals()['RoleAssignmentType'] = RoleAssignmentType

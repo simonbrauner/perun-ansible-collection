@@ -31,9 +31,9 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.app_state import AppState
-    from perun_openapi.model.applications_order_column import ApplicationsOrderColumn
-    from perun_openapi.model.sorting_order import SortingOrder
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.app_state import AppState
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.applications_order_column import ApplicationsOrderColumn
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.sorting_order import SortingOrder
     globals()['AppState'] = AppState
     globals()['ApplicationsOrderColumn'] = ApplicationsOrderColumn
     globals()['SortingOrder'] = SortingOrder

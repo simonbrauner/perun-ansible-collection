@@ -31,8 +31,8 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.group_resource_status import GroupResourceStatus
-    from perun_openapi.model.rich_member import RichMember
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.group_resource_status import GroupResourceStatus
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.rich_member import RichMember
     globals()['GroupResourceStatus'] = GroupResourceStatus
     globals()['RichMember'] = RichMember
 

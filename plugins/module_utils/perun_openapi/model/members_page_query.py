@@ -31,10 +31,10 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.member_group_status import MemberGroupStatus
-    from perun_openapi.model.members_order_column import MembersOrderColumn
-    from perun_openapi.model.sorting_order import SortingOrder
-    from perun_openapi.model.vo_member_statuses import VoMemberStatuses
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.member_group_status import MemberGroupStatus
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.members_order_column import MembersOrderColumn
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.sorting_order import SortingOrder
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.vo_member_statuses import VoMemberStatuses
     globals()['MemberGroupStatus'] = MemberGroupStatus
     globals()['MembersOrderColumn'] = MembersOrderColumn
     globals()['SortingOrder'] = SortingOrder

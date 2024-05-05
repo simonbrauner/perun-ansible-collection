@@ -31,8 +31,8 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.attribute import Attribute
-    from perun_openapi.model.resource import Resource
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.attribute import Attribute
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.resource import Resource
     globals()['Attribute'] = Attribute
     globals()['Resource'] = Resource
 

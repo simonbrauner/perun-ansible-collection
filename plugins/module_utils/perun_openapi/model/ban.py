@@ -31,10 +31,10 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.auditable import Auditable
-    from perun_openapi.model.ban_on_facility import BanOnFacility
-    from perun_openapi.model.ban_on_resource import BanOnResource
-    from perun_openapi.model.ban_on_vo import BanOnVo
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.auditable import Auditable
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.ban_on_facility import BanOnFacility
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.ban_on_resource import BanOnResource
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.ban_on_vo import BanOnVo
     globals()['Auditable'] = Auditable
     globals()['BanOnFacility'] = BanOnFacility
     globals()['BanOnResource'] = BanOnResource

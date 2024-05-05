@@ -31,8 +31,8 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.candidate import Candidate
-    from perun_openapi.model.user import User
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.candidate import Candidate
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.user import User
     globals()['Candidate'] = Candidate
     globals()['User'] = User
 

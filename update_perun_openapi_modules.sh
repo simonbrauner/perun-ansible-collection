@@ -16,7 +16,7 @@ cd "$TMP_DIR/perun-cli-python"
 
 sh "generate.sh"
 
-MATCH="^(from |import )$PERUN_OPENAPI_DIR_NAME"
+MATCH="(from |import )$PERUN_OPENAPI_DIR_NAME"
 find "$PERUN_OPENAPI_DIR_NAME" -name "*.py" -exec sed -E -i \
     "s/$MATCH/\1$IMPORT_PREFIX$PERUN_OPENAPI_DIR_NAME/" {} +
 

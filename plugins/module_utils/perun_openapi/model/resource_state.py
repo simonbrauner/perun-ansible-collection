@@ -31,8 +31,8 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.resource import Resource
-    from perun_openapi.model.task import Task
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.resource import Resource
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.task import Task
     globals()['Resource'] = Resource
     globals()['Task'] = Task
 

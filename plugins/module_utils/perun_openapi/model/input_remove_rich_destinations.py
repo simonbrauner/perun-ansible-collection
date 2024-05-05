@@ -31,7 +31,7 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.rich_destination import RichDestination
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.rich_destination import RichDestination
     globals()['RichDestination'] = RichDestination
 
 

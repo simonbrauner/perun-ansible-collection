@@ -31,13 +31,13 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.app_state import AppState
-    from perun_openapi.model.app_type import AppType
-    from perun_openapi.model.application import Application
-    from perun_openapi.model.application_form_item_data import ApplicationFormItemData
-    from perun_openapi.model.group import Group
-    from perun_openapi.model.user import User
-    from perun_openapi.model.vo import Vo
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.app_state import AppState
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.app_type import AppType
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.application import Application
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.application_form_item_data import ApplicationFormItemData
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.group import Group
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.user import User
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.vo import Vo
     globals()['AppState'] = AppState
     globals()['AppType'] = AppType
     globals()['Application'] = Application

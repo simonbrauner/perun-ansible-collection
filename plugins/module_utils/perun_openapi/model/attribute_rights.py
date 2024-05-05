@@ -31,7 +31,7 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.action_type import ActionType
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.action_type import ActionType
     globals()['ActionType'] = ActionType
 
 

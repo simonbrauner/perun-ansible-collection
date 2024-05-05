@@ -31,7 +31,7 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.application_form_item_data import ApplicationFormItemData
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.application_form_item_data import ApplicationFormItemData
     globals()['ApplicationFormItemData'] = ApplicationFormItemData
 
 

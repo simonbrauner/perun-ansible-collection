@@ -31,7 +31,7 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.users_page_query import UsersPageQuery
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.users_page_query import UsersPageQuery
     globals()['UsersPageQuery'] = UsersPageQuery
 
 

@@ -31,9 +31,9 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.ban_on_facility import BanOnFacility
-    from perun_openapi.model.facility import Facility
-    from perun_openapi.model.rich_user import RichUser
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.ban_on_facility import BanOnFacility
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.facility import Facility
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.rich_user import RichUser
     globals()['BanOnFacility'] = BanOnFacility
     globals()['Facility'] = Facility
     globals()['RichUser'] = RichUser

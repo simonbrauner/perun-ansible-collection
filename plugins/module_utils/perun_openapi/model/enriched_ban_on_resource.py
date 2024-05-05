@@ -31,9 +31,9 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.e
 
 
 def lazy_import():
-    from perun_openapi.model.ban_on_resource import BanOnResource
-    from perun_openapi.model.resource import Resource
-    from perun_openapi.model.rich_member import RichMember
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.ban_on_resource import BanOnResource
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.resource import Resource
+    from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.rich_member import RichMember
     globals()['BanOnResource'] = BanOnResource
     globals()['Resource'] = Resource
     globals()['RichMember'] = RichMember
