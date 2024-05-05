@@ -51,7 +51,7 @@ action_groups:
     - group_create
     - group_info
     - group_member
-    - mail_create
+    - mail_set
     - mails_info
     - member_info
     - user_info
