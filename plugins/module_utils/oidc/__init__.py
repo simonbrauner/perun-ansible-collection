@@ -357,10 +357,6 @@ class DeviceCodeOAuth:
         Authenticate using OAUth 2.0 Device Code grant flow
         :return: access_token
         """
-
-        # Do not wait for login
-        raise Exception("Use perun-cli to configure oauth")
-
         if self.debug:
             print("doing AuthRequest")
         auth_request_params = {"client_id": self.CLIENT_ID, "scope": self.SCOPES}
@@ -389,7 +385,11 @@ class DeviceCodeOAuth:
         print(
             "**************************************************************************************"
         )
-        print("For authentication, navigate to: ", verification_url)
+
+        # Prevent ansible from hiding output
+        with open("/dev/tty", "w") as terminal:
+            print("For authentication, navigate to: ", verification_url, file=terminal)
+
         print(
             "You can open the URL on your mobile phone by scanning the following QR code:"
         )
