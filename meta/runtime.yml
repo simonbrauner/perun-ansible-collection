@@ -48,8 +48,8 @@ requires_ansible: '>=2.14.3'
 # Groups of actions/modules that take a common set of options
 action_groups:
   auth_modules:
-    - group_create
     - group_info
+    - group_set
     - group_member
     - mail_set
     - mails_info

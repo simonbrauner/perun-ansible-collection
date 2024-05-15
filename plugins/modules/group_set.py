@@ -3,7 +3,7 @@
 
 DOCUMENTATION = r"""
 ---
-module: group_create
+module: group_set
 
 short_description: Create a new group
 """
@@ -27,48 +27,52 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.api_client impo
 
 from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.exceptions import ApiException
 from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.api.groups_manager_api import GroupsManagerApi
+from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.input_update_group import InputUpdateGroup
 
 from ansible.module_utils.basic import AnsibleModule
 
 from json import loads
 
 
-def needs_change(params, api_client):
+def get_group(params, api_client):
     manager = GroupsManagerApi(api_client)
 
     try:
-        manager.get_group_by_name(
-            params["vo_id"], params["name"], _preload_content=False
+        return manager.get_group_by_name(params["vo_id"], params["group_name"])
+    except Exception:
+        return None
+
+
+def set_group(found_group, params, api_client):
+    manager = GroupsManagerApi(api_client)
+
+    if found_group is None:
+        manager.create_group_with_vo_name_description(
+            params["vo_id"], params["group_name"], params["group_description"]
         )
-    except ApiException:
+
+        return True
+
+    if found_group.description != params["group_description"]:
+        found_group.description = params["group_description"]
+        manager.update_group(InputUpdateGroup(found_group))
+
         return True
 
     return False
 
-
-def perform_changes(params, api_client):
-    manager = GroupsManagerApi(api_client)
-    response = manager.create_group_with_vo_name_description(
-        params["vo_id"], params["name"], params["description"], _preload_content=False
-    )
-    json_string = response.read().decode()
-
-    return loads(json_string)
-
-
 def main():
     options = general_module_options()
     options["argument_spec"]["vo_id"] = dict(type="int", required=True)
-    options["argument_spec"]["name"] = dict(type="str", required=True)
-    options["argument_spec"]["description"] = dict(type="str", required=True)
+    options["argument_spec"]["group_name"] = dict(type="str", required=True)
+    options["argument_spec"]["group_description"] = dict(type="str", required=True)
     module = AnsibleModule(**options)
 
     try:
         with configured_api_client(module.params) as api_client:
-            if not needs_change(module.params, api_client):
-                module.exit_json()
+            found_group = get_group(module.params, api_client)
 
-            module.exit_json(changed=True, **perform_changes(module.params, api_client))
+            module.exit_json(changed=set_group(found_group, module.params, api_client))
 
     except Exception as exception:
         module.fail_json(msg=f"{exception}")
