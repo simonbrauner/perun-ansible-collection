@@ -393,7 +393,10 @@ class DeviceCodeOAuth:
         print(
             "You can open the URL on your mobile phone by scanning the following QR code:"
         )
-        subprocess.run(["qrencode", "-t", "UTF8", verification_url])
+
+        # Remove unnecessary dependency
+        # subprocess.run(["qrencode", "-t", "UTF8", verification_url])
+
         print(
             "**************************************************************************************"
         )
