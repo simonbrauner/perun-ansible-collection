@@ -24,14 +24,28 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.api_client impo
     general_module_options,
     configured_api_client,
 )
-from ansible_collections.simonbrauner.perun.plugins.module_utils.get_mails import get_mails
+from ansible_collections.simonbrauner.perun.plugins.module_utils.get_mails import (
+    get_mails,
+)
 
-from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.exceptions import ApiException
-from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.api.registrar_manager_api import RegistrarManagerApi
-from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.app_type import AppType
-from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.mail_type import MailType
-from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.mail_text import MailText
-from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.application_mail import ApplicationMail
+from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.exceptions import (
+    ApiException,
+)
+from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.api.registrar_manager_api import (
+    RegistrarManagerApi,
+)
+from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.app_type import (
+    AppType,
+)
+from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.mail_type import (
+    MailType,
+)
+from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.mail_text import (
+    MailText,
+)
+from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.application_mail import (
+    ApplicationMail,
+)
 
 from ansible.module_utils.basic import AnsibleModule
 
@@ -43,8 +57,8 @@ def get_mail(params, api_client):
 
     for mail in mails:
         if mail["id"] == params["mail"]["id"] or (
-                mail["appType"] == params["mail"]["app_type"]
-                and mail["mailType"] == params["mail"]["mail_type"]
+            mail["appType"] == params["mail"]["app_type"]
+            and mail["mailType"] == params["mail"]["mail_type"]
         ):
             return mail
 
@@ -58,10 +72,14 @@ def updated_mail(found_mail, params, api_client):
         "app_type": AppType(params["mail"]["app_type"]),
         "mail_type": MailType(params["mail"]["mail_type"]),
         "send": params["mail"]["send"],
-        "message": {property: MailText(params["mail"]["message"][property])
-                    for property in params["mail"]["message"]},
-        "html_message": {property: MailText(params["mail"]["html_message"][property])
-                         for property in params["mail"]["html_message"]}
+        "message": {
+            property: MailText(params["mail"]["message"][property])
+            for property in params["mail"]["message"]
+        },
+        "html_message": {
+            property: MailText(params["mail"]["html_message"][property])
+            for property in params["mail"]["html_message"]
+        },
     }
 
     if found_mail is not None:
@@ -101,9 +119,7 @@ def set_mail(found_mail, params, api_client):
         delete_mail(found_mail["id"], params, api_client)
         return True
 
-    mail_data = {
-        "mail": updated_mail(found_mail, params, api_client)
-    }
+    mail_data = {"mail": updated_mail(found_mail, params, api_client)}
 
     if found_mail is None:
         create_mail(mail_data, params, api_client)
@@ -132,8 +148,8 @@ def main():
                         locale=dict(type="str", required=False),
                         subject=dict(type="str", required=False),
                         text=dict(type="str", required=False),
-                    )
-                )
+                    ),
+                ),
             ),
             html_message=dict(
                 type="dict",
@@ -144,24 +160,20 @@ def main():
                         locale=dict(type="str", required=False),
                         subject=dict(type="str", required=False),
                         text=dict(type="str", required=False),
-                    )
-                )
-            )
+                    ),
+                ),
+            ),
         ),
-        required_one_of=[['id', 'app_type'],
-                         ['id', 'mail_type']],
-        mutually_exclusive=[['id', 'app_type'],
-                            ['id', 'mail_type']]
+        required_one_of=[["id", "app_type"], ["id", "mail_type"]],
+        mutually_exclusive=[["id", "app_type"], ["id", "mail_type"]],
     )
     options["argument_spec"]["state"] = dict(
-        type="str",
-        choices=["present", "absent"],
-        required=False,
-        default="present")
+        type="str", choices=["present", "absent"], required=False, default="present"
+    )
     options["argument_spec"]["vo_id"] = dict(type="int", required=False)
     options["argument_spec"]["group_id"] = dict(type="int", required=False)
-    options["required_one_of"].append(["vo_id", 'group_id'])
-    options["mutually_exclusive"].append(["vo_id", 'group_id'])
+    options["required_one_of"].append(["vo_id", "group_id"])
+    options["mutually_exclusive"].append(["vo_id", "group_id"])
     module = AnsibleModule(**options)
 
     try:

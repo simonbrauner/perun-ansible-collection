@@ -35,7 +35,9 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.api_client impo
     configured_api_client,
 )
 
-from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.api.groups_manager_api import GroupsManagerApi
+from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.api.groups_manager_api import (
+    GroupsManagerApi,
+)
 
 from ansible.module_utils.basic import AnsibleModule
 

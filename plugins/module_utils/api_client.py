@@ -1,6 +1,12 @@
-from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.api_client import ApiClient
-from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.configuration import Configuration
-from ansible_collections.simonbrauner.perun.plugins.module_utils.oidc import DeviceCodeOAuth
+from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.api_client import (
+    ApiClient,
+)
+from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.configuration import (
+    Configuration,
+)
+from ansible_collections.simonbrauner.perun.plugins.module_utils.oidc import (
+    DeviceCodeOAuth,
+)
 
 
 def general_module_options():
@@ -17,7 +23,7 @@ def general_module_options():
                     encryption_password=dict(type="str", required=True, no_log=True),
                     mfa=dict(type="bool", required=True),
                     mfa_valid_minutes=dict(type="int", required=True),
-                )
+                ),
             ),
             ba=dict(
                 type="dict",
@@ -26,13 +32,14 @@ def general_module_options():
                     rpc_url=dict(type="str", required=True),
                     user=dict(type="str", required=True),
                     password=dict(type="str", required=True, no_log=True),
-                )
-            )
+                ),
+            ),
         ),
-        required_one_of=[['oauth', 'ba']],
-        mutually_exclusive=[['oauth', 'ba']],
+        required_one_of=[["oauth", "ba"]],
+        mutually_exclusive=[["oauth", "ba"]],
         supports_check_mode=False,
     )
+
 
 def configured_api_client(params):
     if params["oauth"] is not None:
@@ -44,7 +51,7 @@ def configured_api_client(params):
             params["oauth"]["encryption_password"],
             params["oauth"]["mfa"],
             params["oauth"]["mfa_valid_minutes"],
-            False
+            False,
         )
         config = Configuration(
             access_token=dca.get_access_token(),

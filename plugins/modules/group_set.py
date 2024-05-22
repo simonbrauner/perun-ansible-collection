@@ -25,9 +25,15 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.api_client impo
     configured_api_client,
 )
 
-from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.exceptions import ApiException
-from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.api.groups_manager_api import GroupsManagerApi
-from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.input_update_group import InputUpdateGroup
+from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.exceptions import (
+    ApiException,
+)
+from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.api.groups_manager_api import (
+    GroupsManagerApi,
+)
+from ansible_collections.simonbrauner.perun.plugins.module_utils.perun_openapi.model.input_update_group import (
+    InputUpdateGroup,
+)
 
 from ansible.module_utils.basic import AnsibleModule
 
@@ -60,6 +66,7 @@ def set_group(found_group, params, api_client):
         return True
 
     return False
+
 
 def main():
     options = general_module_options()

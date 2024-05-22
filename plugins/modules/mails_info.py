@@ -30,21 +30,23 @@ from ansible_collections.simonbrauner.perun.plugins.module_utils.api_client impo
     general_module_options,
     configured_api_client,
 )
-from ansible_collections.simonbrauner.perun.plugins.module_utils.get_mails import get_mails
+from ansible_collections.simonbrauner.perun.plugins.module_utils.get_mails import (
+    get_mails,
+)
 
 from ansible.module_utils.basic import AnsibleModule
 
 
 def get_content(params, api_client):
-    return {"mails":get_mails(params, api_client)}
+    return {"mails": get_mails(params, api_client)}
 
 
 def main():
     options = general_module_options()
     options["argument_spec"]["vo_id"] = dict(type="str", required=False)
     options["argument_spec"]["group_id"] = dict(type="str", required=False)
-    options["required_one_of"].append(["vo_id", 'group_id'])
-    options["mutually_exclusive"].append(["vo_id", 'group_id'])
+    options["required_one_of"].append(["vo_id", "group_id"])
+    options["mutually_exclusive"].append(["vo_id", "group_id"])
     module = AnsibleModule(**options)
 
     try:
