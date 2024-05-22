@@ -6,6 +6,8 @@ DOCUMENTATION = r"""
 module: group_info
 
 short_description: Get data about group in virtual organization
+
+description: Get data about group in virtual organization.
 """
 
 EXAMPLES = r"""

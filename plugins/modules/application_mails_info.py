@@ -6,6 +6,8 @@ DOCUMENTATION = r"""
 module: application_mails_info
 
 short_description: Get mails of given vo/group
+
+description: Get mails of given vo/group.
 """
 
 EXAMPLES = r"""

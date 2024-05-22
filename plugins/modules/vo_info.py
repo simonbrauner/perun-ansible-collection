@@ -6,6 +6,8 @@ DOCUMENTATION = r"""
 module: vo_info
 
 short_description: Get data about virtual organization
+
+description: Get data about virtual organization.
 """
 
 EXAMPLES = r"""

@@ -6,6 +6,8 @@ DOCUMENTATION = r"""
 module: group
 
 short_description: Create group or change its description
+
+description: Create group or change its description.
 """
 
 EXAMPLES = r"""

@@ -6,6 +6,8 @@ DOCUMENTATION = r"""
 module: application_mail
 
 short_description: Create/update/delete application mail
+
+description: Create/update/delete application mail.
 """
 
 EXAMPLES = r"""

@@ -6,6 +6,8 @@ DOCUMENTATION = r"""
 module: group_member
 
 short_description: Manage membership in group
+
+description: Manage membership in group.
 """
 
 EXAMPLES = r"""

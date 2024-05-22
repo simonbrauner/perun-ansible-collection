@@ -6,6 +6,8 @@ DOCUMENTATION = r"""
 module: user_info
 
 short_description: Get data about user
+
+description: Get data about user.
 """
 
 EXAMPLES = r"""
