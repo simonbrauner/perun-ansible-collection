@@ -11,7 +11,7 @@ import base64
 import time
 import jwt
 import requests
-import typer
+# import typer
 import yaml
 import os
 import sys
@@ -171,7 +171,7 @@ class DeviceCodeOAuth:
             return self.config_data.get(opt_name)
         else:
             print("ERROR: value for option", opt_name, " is not known", file=sys.stderr)
-            raise typer.Exit(code=1)
+            exit(1)  # raise typer.Exit(code=1)
 
     def __cache_dir(self) -> Path:
         """
@@ -369,13 +369,13 @@ class DeviceCodeOAuth:
                     "WARNING: MFA requested but not supported by Perun instance",
                     file=sys.stderr,
                 )
-                raise typer.Exit(code=1)
+                exit(1)  # raise typer.Exit(code=1)
         device_code_response = requests.post(
             self.DEVICE_AUTHORIZATION_ENDPOINT_URL, data=auth_request_params
         )
         if device_code_response.status_code != 200:
             print("Error generating the device code")
-            raise typer.Exit(code=1)
+            exit(1)  # raise typer.Exit(code=1)
         device_code_data = device_code_response.json()
         verification_url = device_code_data["verification_uri_complete"]
         if "&prompt=login" not in verification_url:
@@ -415,7 +415,7 @@ class DeviceCodeOAuth:
                 return self.__store_token_data(token_data)
             elif token_data["error"] not in ("authorization_pending", "slow_down"):
                 print(token_data["error_description"])
-                raise typer.Exit(code=1)
+                exit(1)  # raise typer.Exit(code=1)
             else:
                 time.sleep(5)
 
@@ -438,7 +438,7 @@ class DeviceCodeOAuth:
             print("Error refreshing tokens")
             if self.debug:
                 print(refresh_response.json())
-            raise typer.Exit(code=1)
+            exit(1)  # raise typer.Exit(code=1)
         return self.__store_token_data(refresh_response.json())
 
     def __store_token_data(self, token_data: dict) -> str:
@@ -460,4 +460,4 @@ class DeviceCodeOAuth:
             return access_token
         else:
             print("ERROR: obtained tokens are not valid", file=sys.stderr)
-            raise typer.Exit(code=1)
+            exit(1)  # raise typer.Exit(code=1)
