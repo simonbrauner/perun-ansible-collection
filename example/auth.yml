@@ -1,0 +1,13 @@
+auth:
+    oauth:
+      metadata_url: "https://login.e-infra.cz/oidc/.well-known/openid-configuration"
+      client_id: "363b656e-d139-4290-99cd-ee64eeb830d5"
+      scopes: "openid perun_api perun_admin offline_access"
+      rpc_url: "https://perun-api.acc.aai.e-infra.cz/oauth/rpc/"
+      encryption_password: "s3cr3t"
+      mfa: false
+      mfa_valid_minutes: 480
+#    ba:
+#      rpc_url: https://api-test.perun-aai.org/ba/rpc/
+#      user: # TODO
+#      password: # TODO

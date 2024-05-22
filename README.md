@@ -15,3 +15,7 @@ The collection depends on the dependencies of the [previously mentioned generate
 ## Authenticaition
 
 Every module needs to contain either parameter `oauth` or `ba` for authentication. Subparameters of these options are listed in `plugins/module_utils/api_client.py`.
+
+## Example Playbook
+
+A file with variables and a playbook composed of examples from modules are available in the `example/` directory.

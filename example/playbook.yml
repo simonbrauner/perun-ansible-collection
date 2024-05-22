@@ -1,0 +1,137 @@
+- name: Test perun ansible collection
+  hosts: localhost
+  gather_facts: no
+  collections:
+    - simonbrauner.perun
+  vars_files:
+    - auth.yml
+  module_defaults:
+    group/simonbrauner.perun.auth_modules: "{{ auth }}"
+  vars:
+    vo_name: # TODO
+    user_id: # TODO
+    group_name: ansible test group
+    group_description: group that tests ansible collection
+    new_group_description: group with changed description
+    cs_subject: cs subject
+    en_subject: en subject
+    cs_text: cs text
+    en_text: en text
+  tasks:
+    - name: Get data about given virtual organization
+      simonbrauner.perun.vo_info:
+        short_name: "{{ vo_name }}"
+      register: vo1
+    - debug:
+        var: vo1
+    - name: Get data about user with given id
+      simonbrauner.perun.user_info:
+        id: "{{ user_id }}"
+      register: user1
+    - debug:
+        var: user1
+    - name: Get data about member
+      simonbrauner.perun.member_info:
+        vo_id: "{{ vo1.id }}"
+        user_id: "{{ user_id }}"
+      register: member1
+    - debug:
+        var: member1
+    - name: Add new group
+      simonbrauner.perun.group:
+        vo_id: "{{ vo1.id }}"
+        name: "{{ group_name }}"
+        description: "{{ group_description }}"
+    - name: Get data about given group
+      simonbrauner.perun.group_info:
+        vo_id: "{{ vo1.id }}"
+        name: "{{ group_name }}"
+      register: group1
+    - debug:
+        var: group1
+    - name: Add member to group
+      simonbrauner.perun.group_member:
+        member_id: "{{ member1.id }}"
+        group_id: "{{ group1.id }}"
+        member_of_group: true
+    - name: Change group description
+      simonbrauner.perun.group:
+        vo_id: "{{ vo1.id }}"
+        name: "{{ group_name }}"
+        description: "{{ new_group_description }}"
+    - name: Get data about given group
+      simonbrauner.perun.group_info:
+        vo_id: "{{ vo1.id }}"
+        name: "{{ group_name }}"
+      register: group1
+    - debug:
+        var: group1
+    - name: Remove member from group
+      simonbrauner.perun.group_member:
+        member_id: "{{ member1.id }}"
+        group_id: "{{ group1.id }}"
+        member_of_group: false
+    - name: Get mails of given vo
+      simonbrauner.perun.application_mails_info:
+        vo_id: "{{ vo1.id }}"
+      register: mails1
+    - debug:
+        var: mails1
+    - name: Create a new application mail
+      application_mail:
+        vo_id: "{{ vo1.id }}"
+        mail:
+          app_type: INITIAL
+          mail_type: APP_CREATED_USER
+          message:
+            cs:
+              locale: cs
+              subject: "{{ cs_subject }}"
+              text: "{{ cs_text }}"
+          html_message:
+            en:
+              locale: en
+              subject: "{{ en_subject }}"
+              text: "{{ en_text }}"
+    - name: Get mails of given vo
+      simonbrauner.perun.application_mails_info:
+        vo_id: "{{ vo1.id }}"
+      register: mails1
+    - debug:
+        var: mails1
+    - name: Set send to false in application mail
+      application_mail:
+        vo_id: "{{ vo1.id }}"
+        mail:
+          app_type: INITIAL
+          mail_type: APP_CREATED_USER
+          send: false
+          message:
+            cs:
+              locale: cs
+              subject: "{{ cs_subject }}"
+              text: "{{ cs_text }}"
+          html_message:
+            en:
+              locale: en
+              subject: "{{ en_subject }}"
+              text: "{{ en_text }}"
+    - name: Get mails of given vo
+      simonbrauner.perun.application_mails_info:
+        vo_id: "{{ vo1.id }}"
+      register: mails1
+    - debug:
+        var: mails1
+    - name: Delete the application mail
+      application_mail:
+        vo_id: "{{ vo1.id }}"
+        state: absent
+        mail:
+          app_type: INITIAL
+          mail_type: APP_CREATED_USER
+    - name: Get mails of given vo
+      simonbrauner.perun.application_mails_info:
+        vo_id: "{{ vo1.id }}"
+      register: mails1
+    - debug:
+        var: mails1
