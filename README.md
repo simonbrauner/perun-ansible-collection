@@ -11,3 +11,7 @@ The file `plugins/module_utils/oidc/__init__.py` is directly copied from the [Pe
 ## Dependencies
 
 The collection depends on the dependencies of the [previously mentioned generated modules](https://gitlab.ics.muni.cz/perun/perun-idm/perun/-/tree/48cbaf46474ca82d221815ca70919fdcd5dcd073/perun-cli-python#installation), with the exceptions of `openjdk-17-jdk-headless`, `qrencode`, and `python3-typer`.
+
+## Authenticaition
+
+Every module needs to contain either parameter `oauth` or `ba` for authentication. Subparameters of these options are listed in `plugins/module_utils/api_client.py`.
