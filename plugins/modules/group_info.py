@@ -11,10 +11,6 @@ short_description: Get data about group in virtual organization
 EXAMPLES = r"""
 - name: Get data about given group
   simonbrauner.perun.group_info:
-    rpc_url: "{{ rpc_url }}"
-    auth:
-      user: "{{ user }}"
-      password: "{{ password }}"
     vo_id: "{{ vo1.id }}"
     name: "{{ group_name }}"
 """

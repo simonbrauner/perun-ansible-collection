@@ -3,18 +3,14 @@
 
 DOCUMENTATION = r"""
 ---
-module: group_set
+module: group
 
-short_description: Create a new group
+short_description: Create group or change its description
 """
 
 EXAMPLES = r"""
 - name: Add new group
   simonbrauner.perun.group_create:
-    rpc_url: "{{ rpc_url }}"
-    auth:
-      user: "{{ user }}"
-      password: "{{ password }}"
     vo_id: "{{ vo1.id }}"
     name: "{{ new_group_name }}"
     description: "{{ new_group_description }}"
@@ -44,7 +40,7 @@ def get_group(params, api_client):
     manager = GroupsManagerApi(api_client)
 
     try:
-        return manager.get_group_by_name(params["vo_id"], params["group_name"])
+        return manager.get_group_by_name(params["vo_id"], params["name"])
     except Exception:
         return None
 
@@ -54,13 +50,13 @@ def set_group(found_group, params, api_client):
 
     if found_group is None:
         manager.create_group_with_vo_name_description(
-            params["vo_id"], params["group_name"], params["group_description"]
+            params["vo_id"], params["name"], params["description"]
         )
 
         return True
 
-    if found_group.description != params["group_description"]:
-        found_group.description = params["group_description"]
+    if found_group.description != params["description"]:
+        found_group.description = params["description"]
         manager.update_group(InputUpdateGroup(found_group))
 
         return True
@@ -71,8 +67,8 @@ def set_group(found_group, params, api_client):
 def main():
     options = general_module_options()
     options["argument_spec"]["vo_id"] = dict(type="int", required=True)
-    options["argument_spec"]["group_name"] = dict(type="str", required=True)
-    options["argument_spec"]["group_description"] = dict(type="str", required=True)
+    options["argument_spec"]["name"] = dict(type="str", required=True)
+    options["argument_spec"]["description"] = dict(type="str", required=True)
     module = AnsibleModule(**options)
 
     try:

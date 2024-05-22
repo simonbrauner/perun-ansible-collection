@@ -11,11 +11,7 @@ short_description: Get data about user
 EXAMPLES = r"""
 - name: Get data about user with given id
   simonbrauner.perun.user_info:
-    rpc_url: "{{ rpc_url }}"
-    auth:
-      user: "{{ user }}"
-      password: "{{ password }}"
-    user_id: "{{ user_id }}"
+    id: "{{ user_id }}"
 """
 
 from ansible_collections.simonbrauner.perun.plugins.module_utils.api_client import (
@@ -34,7 +30,7 @@ from json import loads
 
 def get_content(params, api_client):
     manager = UsersManagerApi(api_client)
-    response = manager.get_user_by_id(params["user_id"], _preload_content=False)
+    response = manager.get_user_by_id(params["id"], _preload_content=False)
     json_string = response.read().decode()
 
     return loads(json_string)
@@ -42,7 +38,7 @@ def get_content(params, api_client):
 
 def main():
     options = general_module_options()
-    options["argument_spec"]["user_id"] = dict(type="int", required=True)
+    options["argument_spec"]["id"] = dict(type="int", required=True)
     module = AnsibleModule(**options)
 
     try:

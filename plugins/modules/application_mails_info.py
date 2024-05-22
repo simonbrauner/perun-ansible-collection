@@ -3,7 +3,7 @@
 
 DOCUMENTATION = r"""
 ---
-module: mails_info
+module: application_mails_info
 
 short_description: Get mails of given vo/group
 """
@@ -11,18 +11,10 @@ short_description: Get mails of given vo/group
 EXAMPLES = r"""
 - name: Get mails of given vo
   simonbrauner.perun.mails_info:
-    rpc_url: "{{ rpc_url }}"
-    auth:
-      user: "{{ user }}"
-      password: "{{ password }}"
     vo_id: "{{ vo1.id }}"
 
 - name: Get mails of given group
   simonbrauner.perun.mails_info:
-    rpc_url: "{{ rpc_url }}"
-    auth:
-      user: "{{ user }}"
-      password: "{{ password }}"
     group_id: "{{ group1.id }}"
 """
 

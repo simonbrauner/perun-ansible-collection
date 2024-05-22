@@ -11,10 +11,6 @@ short_description: Get data about member
 EXAMPLES = r"""
 - name: Get data about member
   simonbrauner.perun.member_info:
-    rpc_url: "{{ rpc_url }}"
-    auth:
-      user: "{{ user }}"
-      password: "{{ password }}"
     vo_id: "{{ vo1.id }}"
     user_id: "{{ user_id }}"
 """

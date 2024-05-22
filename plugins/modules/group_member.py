@@ -11,20 +11,12 @@ short_description: Manage membership in group
 EXAMPLES = r"""
 - name: Add member to group
   simonbrauner.perun.group_member:
-    rpc_url: "{{ rpc_url }}"
-    auth:
-      user: "{{ user }}"
-      password: "{{ password }}"
     member_id: "{{ member1.id }}"
     group_id: "{{ group1.id }}"
     member_of_group: true
 
 - name: Remove member from group
   simonbrauner.perun.group_member:
-    rpc_url: "{{ rpc_url }}"
-    auth:
-      user: "{{ user }}"
-      password: "{{ password }}"
     member_id: "{{ member1.id }}"
     group_id: "{{ group1.id }}"
     member_of_group: false

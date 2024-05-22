@@ -3,21 +3,51 @@
 
 DOCUMENTATION = r"""
 ---
-module: mail_set
+module: application_mail
 
-short_description: Create a new group
+short_description: Create/update/delete application mail
 """
 
 EXAMPLES = r"""
-- name: Add new group
-  simonbrauner.perun.group_create:
-    rpc_url: "{{ rpc_url }}"
-    auth:
-      user: "{{ user }}"
-      password: "{{ password }}"
-    vo_id: "{{ vo1.id }}"
-    name: "{{ new_group_name }}"
-    description: "{{ new_group_description }}"
+- name: Create a new application mail
+  application_mail:
+    mail:
+      app_type: INITIAL
+      mail_type: APP_CREATED_USER
+      message:
+        cs:
+          locale: cs
+          subject: "{{ cs_subject }}"
+          text: "{{ cs_text }}"
+      html_message:
+        en:
+          locale: en
+          subject: "{{ en_subject }}"
+          text: "{{ en_text }}"
+
+- name: Set send to false in application mail
+  application_mail:
+    mail:
+      app_type: INITIAL
+      mail_type: APP_CREATED_USER
+      send: false
+      message:
+        cs:
+          locale: cs
+          subject: "{{ cs_subject }}"
+          text: "{{ cs_text }}"
+      html_message:
+        en:
+          locale: en
+          subject: "{{ en_subject }}"
+          text: "{{ en_text }}"
+
+- name: Delete the application mail
+  application_mail:
+    state: absent
+    mail:
+      app_type: INITIAL
+      mail_type: APP_CREATED_USER
 """
 
 from ansible_collections.simonbrauner.perun.plugins.module_utils.api_client import (
@@ -142,6 +172,7 @@ def main():
             message=dict(
                 type="dict",
                 required=False,
+                default=dict(),
                 additional_properties=dict(
                     type="dict",
                     options=dict(
@@ -154,6 +185,7 @@ def main():
             html_message=dict(
                 type="dict",
                 required=False,
+                default=dict(),
                 additional_properties=dict(
                     type="dict",
                     options=dict(
