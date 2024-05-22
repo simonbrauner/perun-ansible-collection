@@ -12,9 +12,15 @@ description: Create group or change its description.
 
 EXAMPLES = r"""
 - name: Add new group
-  simonbrauner.perun.group_create:
+  simonbrauner.perun.group:
     vo_id: "{{ vo1.id }}"
-    name: "{{ new_group_name }}"
+    name: "{{ group_name }}"
+    description: "{{ group_description }}"
+
+- name: Change group description
+  simonbrauner.perun.group:
+    vo_id: "{{ vo1.id }}"
+    name: "{{ group_name }}"
     description: "{{ new_group_description }}"
 """
 

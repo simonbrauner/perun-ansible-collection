@@ -12,11 +12,11 @@ description: Get mails of given vo/group.
 
 EXAMPLES = r"""
 - name: Get mails of given vo
-  simonbrauner.perun.mails_info:
+  simonbrauner.perun.application_mails_info:
     vo_id: "{{ vo1.id }}"
 
 - name: Get mails of given group
-  simonbrauner.perun.mails_info:
+  simonbrauner.perun.application_mails_info:
     group_id: "{{ group1.id }}"
 """
 
